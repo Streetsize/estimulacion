@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Estimulación Temprana Psicomotriz · CAPS N°204</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,600;0,800;1,300&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #FDF6EC;
+    --warm: #F5E8D0;
+    --terra: #C8623A;
+    --deep: #2C1A0E;
+    --sage: #7A9E7E;
+    --sky: #6BA3BE;
+    --yellow: #E8C547;
+    --lilac: #B89FC8;
+    --soft: #F0EAE2;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--deep);
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; width: 100%; z-index: 100;
+    background: rgba(253,246,236,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(200,98,58,0.15);
+    padding: 1rem 2rem;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .nav-logo {
+    font-family: 'Fraunces', serif;
+    font-size: 1.1rem; font-weight: 800;
+    color: var(--terra);
+    line-height: 1.1;
+  }
+  .nav-logo span { display: block; font-size: 0.65rem; font-weight: 300; color: var(--deep); opacity: 0.6; font-family: 'DM Sans', sans-serif; letter-spacing: 0.08em; text-transform: uppercase; }
+  .nav-links { display: flex; gap: 1.5rem; }
+  .nav-links a {
+    text-decoration: none; color: var(--deep); opacity: 0.6;
+    font-size: 0.82rem; font-weight: 500; letter-spacing: 0.04em;
+    transition: opacity 0.2s;
+  }
+  .nav-links a:hover { opacity: 1; color: var(--terra); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: grid; grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: 8rem 4rem 4rem;
+    position: relative; overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute; inset: 0; z-index: 0;
+    background: radial-gradient(ellipse 80% 60% at 70% 50%, rgba(107,163,190,0.12) 0%, transparent 70%),
+                radial-gradient(ellipse 40% 40% at 20% 80%, rgba(122,158,126,0.1) 0%, transparent 60%);
+  }
+  .hero-blobs {
+    position: absolute;
+    width: 500px; height: 500px;
+    top: -100px; right: -100px;
+    border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+    background: linear-gradient(135deg, rgba(200,98,58,0.08), rgba(232,197,71,0.1));
+    animation: morphBlob 8s ease-in-out infinite;
+  }
+  @keyframes morphBlob {
+    0%, 100% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
+    50% { border-radius: 70% 30% 30% 70% / 70% 70% 30% 30%; }
+  }
+  .hero-content { position: relative; z-index: 1; }
+  .hero-tag {
+    display: inline-block;
+    background: var(--terra); color: #fff;
+    font-size: 0.72rem; font-weight: 500; letter-spacing: 0.1em;
+    text-transform: uppercase; padding: 0.35rem 0.9rem;
+    border-radius: 50px; margin-bottom: 1.5rem;
+    animation: fadeUp 0.8s ease both;
+  }
+  .hero-title {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(2.8rem, 5vw, 4.5rem);
+    font-weight: 800; line-height: 1.05;
+    margin-bottom: 1.5rem;
+    animation: fadeUp 0.8s 0.15s ease both;
+  }
+  .hero-title em { font-style: italic; color: var(--terra); }
+  .hero-sub {
+    font-size: 1.05rem; line-height: 1.7;
+    opacity: 0.7; max-width: 480px;
+    margin-bottom: 2.5rem;
+    animation: fadeUp 0.8s 0.3s ease both;
+  }
+  .hero-ctas {
+    display: flex; gap: 1rem; flex-wrap: wrap;
+    animation: fadeUp 0.8s 0.45s ease both;
+  }
+  .btn-primary {
+    background: var(--terra); color: #fff;
+    padding: 0.9rem 2rem; border-radius: 50px;
+    text-decoration: none; font-weight: 500; font-size: 0.9rem;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 4px 20px rgba(200,98,58,0.3);
+  }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(200,98,58,0.4); }
+  .btn-outline {
+    border: 1.5px solid rgba(44,26,14,0.3); color: var(--deep);
+    padding: 0.9rem 2rem; border-radius: 50px;
+    text-decoration: none; font-weight: 500; font-size: 0.9rem;
+    transition: all 0.2s;
+  }
+  .btn-outline:hover { border-color: var(--terra); color: var(--terra); }
+
+  .hero-visual {
+    position: relative; z-index: 1;
+    display: flex; justify-content: center; align-items: center;
+    animation: fadeUp 0.8s 0.2s ease both;
+  }
+  .hero-cards-stack {
+    position: relative; width: 360px; height: 360px;
+  }
+  .stat-card {
+    position: absolute;
+    background: white;
+    border-radius: 20px;
+    padding: 1.5rem;
+    box-shadow: 0 8px 40px rgba(44,26,14,0.12);
+    animation: float 6s ease-in-out infinite;
+  }
+  .stat-card:nth-child(1) { top: 0; left: 0; width: 200px; animation-delay: 0s; }
+  .stat-card:nth-child(2) { top: 80px; right: 0; width: 180px; animation-delay: -2s; }
+  .stat-card:nth-child(3) { bottom: 0; left: 30px; width: 200px; animation-delay: -4s; }
+  @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
+  .stat-icon { font-size: 2rem; margin-bottom: 0.5rem; }
+  .stat-num { font-family: 'Fraunces', serif; font-size: 2rem; font-weight: 800; color: var(--terra); line-height: 1; }
+  .stat-label { font-size: 0.78rem; opacity: 0.6; margin-top: 0.25rem; line-height: 1.4; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* SECTIONS */
+  section { padding: 5rem 2rem; }
+  .container { max-width: 1100px; margin: 0 auto; }
+  .section-label {
+    font-size: 0.72rem; font-weight: 500; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--terra);
+    margin-bottom: 0.8rem;
+  }
+  .section-title {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(2rem, 3.5vw, 2.8rem);
+    font-weight: 700; line-height: 1.1;
+    margin-bottom: 1rem;
+  }
+  .section-sub { font-size: 1rem; opacity: 0.65; line-height: 1.7; max-width: 600px; }
+
+  /* CONTEXT */
+  .context-section { background: var(--soft); }
+  .context-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; margin-top: 3rem; }
+  .context-text p { font-size: 0.95rem; line-height: 1.8; opacity: 0.75; margin-bottom: 1rem; }
+  .info-cards { display: flex; flex-direction: column; gap: 1rem; }
+  .info-card {
+    background: white; border-radius: 16px;
+    padding: 1.25rem 1.5rem;
+    display: flex; gap: 1rem; align-items: flex-start;
+    box-shadow: 0 2px 16px rgba(44,26,14,0.07);
+    transition: transform 0.2s;
+  }
+  .info-card:hover { transform: translateX(4px); }
+  .info-card-icon { font-size: 1.6rem; flex-shrink: 0; }
+  .info-card-title { font-weight: 600; font-size: 0.9rem; margin-bottom: 0.2rem; }
+  .info-card-text { font-size: 0.82rem; opacity: 0.6; line-height: 1.5; }
+
+  /* OBJECTIVES */
+  .obj-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 3rem; }
+  .obj-card {
+    border-radius: 20px; padding: 2rem;
+    position: relative; overflow: hidden;
+    transition: transform 0.3s;
+  }
+  .obj-card:hover { transform: translateY(-4px); }
+  .obj-card.main { background: var(--terra); color: white; grid-column: 1 / -1; }
+  .obj-card:not(.main) { background: white; box-shadow: 0 4px 24px rgba(44,26,14,0.08); }
+  .obj-num {
+    font-family: 'Fraunces', serif;
+    font-size: 5rem; font-weight: 800; line-height: 1;
+    opacity: 0.08; position: absolute; top: -0.5rem; right: 1rem;
+  }
+  .obj-card.main .obj-num { opacity: 0.15; }
+  .obj-card-title { font-family: 'Fraunces', serif; font-size: 1.2rem; font-weight: 700; margin-bottom: 0.75rem; }
+  .obj-card.main .obj-card-title { font-size: 1.5rem; }
+  .obj-card-text { font-size: 0.88rem; line-height: 1.7; }
+  .obj-card.main .obj-card-text { opacity: 0.85; font-size: 0.95rem; max-width: 700px; }
+  .obj-card:not(.main) .obj-card-text { opacity: 0.65; }
+
+  /* AGES INTERACTIVE */
+  .ages-section { background: var(--deep); color: white; }
+  .ages-section .section-label { color: var(--yellow); }
+  .ages-section .section-title { color: white; }
+  .ages-section .section-sub { color: rgba(255,255,255,0.55); }
+  .age-tabs {
+    display: flex; gap: 0.75rem; margin: 2.5rem 0 2rem;
+    flex-wrap: wrap;
+  }
+  .age-tab {
+    padding: 0.6rem 1.4rem; border-radius: 50px;
+    background: rgba(255,255,255,0.08);
+    border: 1.5px solid rgba(255,255,255,0.12);
+    color: rgba(255,255,255,0.5);
+    cursor: pointer; font-size: 0.85rem; font-weight: 500;
+    transition: all 0.25s;
+  }
+  .age-tab:hover { background: rgba(255,255,255,0.12); color: rgba(255,255,255,0.8); }
+  .age-tab.active { background: var(--terra); border-color: var(--terra); color: white; }
+  .age-content { display: none; }
+  .age-content.active { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; animation: fadeUp 0.4s ease both; }
+  .exercise-card {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 16px; padding: 1.5rem;
+    transition: background 0.2s;
+  }
+  .exercise-card:hover { background: rgba(255,255,255,0.1); }
+  .exercise-area {
+    display: inline-block;
+    font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase;
+    padding: 0.25rem 0.7rem; border-radius: 50px;
+    margin-bottom: 0.75rem; font-weight: 600;
+  }
+  .area-motor { background: rgba(200,98,58,0.3); color: #ff9f7a; }
+  .area-language { background: rgba(107,163,190,0.3); color: #90c8e0; }
+  .area-cognitive { background: rgba(122,158,126,0.3); color: #a5c9a9; }
+  .area-social { background: rgba(184,159,200,0.3); color: #d4bfe4; }
+  .exercise-text { font-size: 0.9rem; line-height: 1.7; color: rgba(255,255,255,0.75); }
+
+  /* METHODOLOGY */
+  .method-section { background: var(--warm); }
+  .steps-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 3rem; position: relative; }
+  .steps-row::before {
+    content: '';
+    position: absolute; top: 40px; left: 10%; right: 10%; height: 2px;
+    background: linear-gradient(90deg, var(--terra), var(--sky), var(--sage));
+    z-index: 0;
+  }
+  .step-item { text-align: center; position: relative; z-index: 1; }
+  .step-circle {
+    width: 80px; height: 80px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 2rem; margin: 0 auto 1rem;
+    position: relative;
+  }
+  .step-circle::before {
+    content: attr(data-num);
+    position: absolute; top: -5px; right: -5px;
+    width: 24px; height: 24px; border-radius: 50%;
+    background: var(--terra); color: white;
+    font-size: 0.7rem; font-weight: 700; font-family: 'DM Sans', sans-serif;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .step-circle.c1 { background: rgba(200,98,58,0.15); }
+  .step-circle.c2 { background: rgba(107,163,190,0.15); }
+  .step-circle.c3 { background: rgba(122,158,126,0.15); }
+  .step-title { font-family: 'Fraunces', serif; font-size: 1.1rem; font-weight: 700; margin-bottom: 0.5rem; }
+  .step-text { font-size: 0.85rem; opacity: 0.65; line-height: 1.6; }
+  .step-time {
+    display: inline-block; margin-top: 0.75rem;
+    background: rgba(200,98,58,0.12); color: var(--terra);
+    font-size: 0.75rem; font-weight: 600; padding: 0.25rem 0.8rem; border-radius: 50px;
+  }
+
+  /* TEAM */
+  .team-section { }
+  .team-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; margin-top: 3rem; }
+  .team-card {
+    background: white; border-radius: 20px;
+    padding: 2rem; text-align: center;
+    box-shadow: 0 4px 24px rgba(44,26,14,0.08);
+    transition: transform 0.2s;
+  }
+  .team-card:hover { transform: translateY(-4px); }
+  .team-avatar {
+    width: 72px; height: 72px; border-radius: 50%;
+    margin: 0 auto 1rem;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 2rem;
+  }
+  .av1 { background: linear-gradient(135deg, rgba(200,98,58,0.15), rgba(232,197,71,0.2)); }
+  .av2 { background: linear-gradient(135deg, rgba(107,163,190,0.15), rgba(122,158,126,0.2)); }
+  .av3 { background: linear-gradient(135deg, rgba(184,159,200,0.15), rgba(107,163,190,0.2)); }
+  .team-name { font-family: 'Fraunces', serif; font-size: 1.1rem; font-weight: 700; margin-bottom: 0.25rem; }
+  .team-role { font-size: 0.82rem; opacity: 0.55; margin-bottom: 0.75rem; }
+  .team-tag {
+    display: inline-block;
+    background: var(--soft); font-size: 0.75rem; font-weight: 500;
+    padding: 0.25rem 0.8rem; border-radius: 50px; color: var(--deep); opacity: 0.7;
+  }
+
+  /* IMPACT */
+  .impact-section { background: var(--sage); color: white; }
+  .impact-section .section-label { color: rgba(255,255,255,0.6); }
+  .impact-section .section-title { color: white; }
+  .impact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; margin-top: 3rem; }
+  .impact-item { text-align: center; }
+  .impact-num {
+    font-family: 'Fraunces', serif; font-size: 3.5rem; font-weight: 800; line-height: 1;
+    color: white; margin-bottom: 0.5rem;
+  }
+  .impact-label { font-size: 0.9rem; opacity: 0.75; line-height: 1.5; }
+
+  /* FUNDAMENTACION ACCORDION */
+  .funda-section { background: var(--soft); }
+  .accordion { margin-top: 2rem; }
+  .acc-item { border-bottom: 1px solid rgba(44,26,14,0.1); }
+  .acc-header {
+    width: 100%; background: none; border: none;
+    padding: 1.25rem 0;
+    display: flex; justify-content: space-between; align-items: center;
+    cursor: pointer; text-align: left;
+    font-family: 'DM Sans', sans-serif; font-size: 1rem; font-weight: 600;
+    color: var(--deep);
+    transition: color 0.2s;
+  }
+  .acc-header:hover { color: var(--terra); }
+  .acc-icon {
+    width: 28px; height: 28px; border-radius: 50%;
+    background: var(--soft); border: 1.5px solid rgba(44,26,14,0.15);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.1rem; flex-shrink: 0; transition: all 0.3s;
+    color: var(--terra);
+  }
+  .acc-item.open .acc-icon { background: var(--terra); color: white; border-color: var(--terra); transform: rotate(45deg); }
+  .acc-body {
+    max-height: 0; overflow: hidden;
+    transition: max-height 0.4s ease, padding 0.3s;
+    font-size: 0.92rem; line-height: 1.8; opacity: 0.7;
+  }
+  .acc-item.open .acc-body { max-height: 600px; padding-bottom: 1.25rem; }
+
+  /* FOOTER */
+  footer {
+    background: var(--deep); color: white;
+    padding: 3rem 2rem; text-align: center;
+  }
+  .footer-logo {
+    font-family: 'Fraunces', serif;
+    font-size: 1.5rem; font-weight: 800; color: var(--terra);
+    margin-bottom: 0.5rem;
+  }
+  .footer-info { font-size: 0.85rem; opacity: 0.4; line-height: 1.8; margin-top: 0.5rem; }
+  .footer-divider { width: 40px; height: 2px; background: var(--terra); margin: 1.5rem auto; }
+
+  /* RESPONSIVE */
+  @media(max-width: 768px) {
+    nav { padding: 0.8rem 1.2rem; }
+    .nav-links { display: none; }
+    .hero { grid-template-columns: 1fr; padding: 6rem 1.5rem 3rem; gap: 3rem; }
+    .hero-visual { display: none; }
+    .context-grid { grid-template-columns: 1fr; }
+    .age-content.active { grid-template-columns: 1fr; }
+    .steps-row { grid-template-columns: 1fr; }
+    .steps-row::before { display: none; }
+    section { padding: 4rem 1.5rem; }
+  }
+
+  /* SCROLL REVEAL */
+  .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+    Estimulación Temprana
+    <span>CAPS N°204 · Godoy Cruz</span>
+  </div>
+  <div class="nav-links">
+    <a href="#contexto">Contexto</a>
+    <a href="#objetivos">Objetivos</a>
+    <a href="#ejercicios">Ejercicios</a>
+    <a href="#metodologia">Metodología</a>
+    <a href="#equipo">Equipo</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="inicio">
+  <div class="hero-bg"></div>
+  <div class="hero-blobs"></div>
+  <div class="hero-content">
+    <div class="hero-tag">Proyecto Comunitario · 2025–2026</div>
+    <h1 class="hero-title">
+      Estimulación<br><em>Temprana</em><br>Psicomotriz
+    </h1>
+    <p class="hero-sub">
+      Un proyecto de intervención comunitaria que capacita a padres y cuidadores en técnicas de estimulación para niños de 0 a 4 años, aprovechando el período de mayor plasticidad cerebral.
+    </p>
+    <div class="hero-ctas">
+      <a href="#ejercicios" class="btn-primary">Ver ejercicios por edad</a>
+      <a href="#objetivos" class="btn-outline">Conocer el proyecto</a>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="hero-cards-stack">
+      <div class="stat-card">
+        <div class="stat-icon">🧠</div>
+        <div class="stat-num">1M+</div>
+        <div class="stat-label">Conexiones neuronales por segundo en la primera infancia</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon">👶</div>
+        <div class="stat-num">0–4</div>
+        <div class="stat-label">Años de alta plasticidad cerebral</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon">🏥</div>
+        <div class="stat-num">CAPS</div>
+        <div class="stat-label">Centro de Salud N°204 · B° Sarmiento</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTEXTO -->
+<section class="context-section" id="contexto">
+  <div class="container">
+    <div class="section-label">Contexto</div>
+    <h2 class="section-title">El barrio y el centro de salud</h2>
+    <p class="section-sub">El proyecto nace en el CAPS N°204 del Barrio Presidente Sarmiento, Godoy Cruz, donde se identificó una incidencia significativa de retrasos en el desarrollo psicomotor infantil.</p>
+    <div class="context-grid">
+      <div class="context-text reveal">
+        <p>A través de la observación clínica cotidiana, se detectó que muchos niños de 0 a 4 años presentan hitos madurativos no alcanzados, principalmente en lenguaje y motricidad. Esto se vincula frecuentemente al desconocimiento sobre estimulación temprana.</p>
+        <p>El barrio Sarmiento se caracteriza por predominio de trabajo informal, familias numerosas, y contextos donde el tiempo disponible para estimular al niño es limitado. El centro de salud atiende de lunes a viernes de 8 a 17 hs y sábados hasta el mediodía.</p>
+        <p>La falta de estímulos adecuados en esta etapa puede generar brechas en el desarrollo que, de no ser abordadas, pueden consolidarse en dificultades de aprendizaje y problemas de integración social.</p>
+      </div>
+      <div class="info-cards reveal reveal-delay-1">
+        <div class="info-card">
+          <div class="info-card-icon">🏠</div>
+          <div>
+            <div class="info-card-title">Ubicación</div>
+            <div class="info-card-text">Salvador Arias 2099, B° Presidente Sarmiento, Godoy Cruz — accesible en línea 400 (internos 461, 463)</div>
+          </div>
+        </div>
+        <div class="info-card">
+          <div class="info-card-icon">👥</div>
+          <div>
+            <div class="info-card-title">Equipo profesional</div>
+            <div class="info-card-text">Médicos de familia, pediatras, ginecólogos, psicólogo infantil, nutrición, trabajo social, odontología y residentes</div>
+          </div>
+        </div>
+        <div class="info-card">
+          <div class="info-card-icon">⚠️</div>
+          <div>
+            <div class="info-card-title">Factores de riesgo observados</div>
+            <div class="info-card-text">Estrés parental, uso excesivo de pantallas, escasa conversación, poco juego al aire libre y desconocimiento de pautas de estimulación</div>
+          </div>
+        </div>
+        <div class="info-card">
+          <div class="info-card-icon">📍</div>
+          <div>
+            <div class="info-card-title">Recursos comunitarios</div>
+            <div class="info-card-text">5 escuelas primarias, 2 jardines maternales, 3 polideportivos y el Instituto Superior del Bicentenario en las inmediaciones</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- OBJETIVOS -->
+<section id="objetivos">
+  <div class="container">
+    <div class="section-label">Objetivos del proyecto</div>
+    <h2 class="section-title">¿Qué buscamos lograr?</h2>
+    <div class="obj-grid">
+      <div class="obj-card main reveal">
+        <div class="obj-num">G</div>
+        <div class="obj-card-title">Objetivo General</div>
+        <div class="obj-card-text">Promover el desarrollo integral de niños de 0 a 4 años mediante la educación a padres y cuidadores en pautas de estimulación temprana, fortaleciendo el rol de las familias y aprovechando el período de alta plasticidad cerebral.</div>
+      </div>
+      <div class="obj-card reveal reveal-delay-1">
+        <div class="obj-num">1</div>
+        <div class="obj-card-title">Informar</div>
+        <div class="obj-card-text">Brindar charlas claras y visuales sobre qué esperar del desarrollo psicomotor en cada etapa etaria.</div>
+      </div>
+      <div class="obj-card reveal reveal-delay-2">
+        <div class="obj-num">2</div>
+        <div class="obj-card-title">Sensibilizar</div>
+        <div class="obj-card-text">Concientizar a padres, madres y cuidadores sobre la importancia de la estimulación en la primera infancia.</div>
+      </div>
+      <div class="obj-card reveal reveal-delay-3">
+        <div class="obj-num">3</div>
+        <div class="obj-card-title">Capacitar</div>
+        <div class="obj-card-text">Enseñar técnicas simples de estimulación mediante demostraciones prácticas para continuar en el hogar.</div>
+      </div>
+      <div class="obj-card reveal reveal-delay-1">
+        <div class="obj-num">4</div>
+        <div class="obj-card-title">Empoderar</div>
+        <div class="obj-card-text">Ayudar a los adultos a identificar avances y señales de alerta en el desarrollo de sus hijos.</div>
+      </div>
+      <div class="obj-card reveal reveal-delay-2">
+        <div class="obj-num">5</div>
+        <div class="obj-card-title">Prevenir</div>
+        <div class="obj-card-text">Brindar estrategias que faciliten la aparición de los hitos madurativos en los tiempos biológicos adecuados.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EJERCICIOS INTERACTIVOS -->
+<section class="ages-section" id="ejercicios">
+  <div class="container">
+    <div class="section-label">Guía práctica</div>
+    <h2 class="section-title" style="color:white">Ejercicios por etapa de edad</h2>
+    <p class="section-sub">Actividades simples, sin materiales costosos, que cualquier padre o cuidador puede realizar en casa.</p>
+    <div class="age-tabs">
+      <button class="age-tab active" onclick="showAge('age0')">0–3 meses</button>
+      <button class="age-tab" onclick="showAge('age1')">6–12 meses</button>
+      <button class="age-tab" onclick="showAge('age2')">1–2 años</button>
+      <button class="age-tab" onclick="showAge('age3')">2–4 años</button>
+    </div>
+
+    <div id="age0" class="age-content active">
+      <div class="exercise-card">
+        <span class="exercise-area area-motor">Motor</span>
+        <p class="exercise-text">🐣 Colocar al bebé boca abajo y esperar que pueda mover su cabeza hacia uno de los lados. Luego llevar sus brazos suavemente hacia adelante y con un objeto llamativo lograr que mueva su cabeza hacia el estímulo.</p>
+      </div>
+      <div class="exercise-card">
+        <span class="exercise-area area-motor">Motor</span>
+        <p class="exercise-text">🙆 Realizar movimientos suaves de flexión y extensión de piernas y brazos del bebé, fortaleciendo la musculatura y la conciencia corporal.</p>
+      </div>
+      <div class="exercise-card">
+        <span class="exercise-area area-language">Lenguaje</span>
+        <p class="exercise-text">🗣️ Imitar los sonidos que realice el bebé y decir una palabra sencilla: "mamá", "papá". La respuesta del adulto es fundamental para el desarrollo del lenguaje.</p>
+      </div>
+      <div class="exercise-card">
+        <span class="exercise-area area-cognitive">Cognitivo</span>
+        <p class="exercise-text">👁️ Mover objetos coloridos y llamativos frente al bebé para estimular el seguimiento visual, que es la base del aprendizaje perceptivo.</p>
+      </div>
+    </div>
+
+    <div id="age1" class="age-content">
+      <div class="exercise-card">
+        <span class="exercise-area area-motor">Motor</span>
+        <p class="exercise-text">👀 Con un objeto llamativo, moverlo suavemente de un lado a otro, arriba y abajo, permitiendo que el bebé fije su mirada y mueva su cabeza, fortaleciendo músculos de cuello y espalda.</p>
+      </div>
+      <div class="exercise-card">
+        <span class="exercise-area area-motor">Motor</span>
+        <p class="exercise-text">🧸 En un espacio seguro, colocar objetos a cierta distancia para que el bebé se movilice en su búsqueda, fortaleciendo la coordinación y favoreciendo la independencia.</p>
+      </div>
+      <div class="exercise-card">
+        <span class="exercise-area area-cognitive">Cognitivo</span>
+        <p class="exercise-text">🙈 Ocultar el rostro o un objeto y preguntar "¿dónde está?". Esto estimula la atención, el lenguaje y disminuye la ansiedad de separación (juego del cucú).</p>
+      </div>
+      <div class="exercise-card">
+        <span class="exercise-area area-language">Lenguaje</span>
+        <p class="exercise-text">🔁 Repetir los sonidos que emita el bebé y decirle palabras sencillas constantemente. La imitación mutua es la base del desarrollo comunicativo.</p>
+      </div>
+    </div>
+
+    <div id="age2" class="age-content">
+      <div class="exercise-card">
+        <span class="exercise-area area-cognitive">Cognitivo</span>
+        <p class="exercise-text">🎨 Mover objetos de un lugar a otro: guardarlos o clasificarlos por colores. Estimula la atención, la categorización y la motricidad fina.</p>
+      </div>
+      <div class="exercise-card">
+        <span class="exercise-area area-language">Lenguaje</span>
+        <p class="exercise-text">🗂️ Señalar objetos y decir su nombre, esperando que el niño/a pueda repetirlo. El vocabulario receptivo precede al expresivo.</p>
+      </div>
+      <div class="exercise-card">
+        <span class="exercise-area area-language">Lenguaje</span>
+        <p class="exercise-text">🐄 Realizar sonidos asociados a palabras: "vaca, muuu". También expresiones faciales que el niño/a pueda imitar: "cara feliz", "cara triste". Estimula vocabulario y empatía emocional.</p>
+      </div>
+      <div class="exercise-card">
+        <span class="exercise-area area-social">Social</span>
+        <p class="exercise-text">🎭 Jugar a imitar acciones cotidianas (alimentar a un muñeco, cocinar en una cocina de juguete). El juego simbólico temprano es predictor del desarrollo del lenguaje.</p>
+      </div>
+    </div>
+
+    <div id="age3" class="age-content">
+      <div class="exercise-card">
+        <span class="exercise-area area-motor">Motor</span>
+        <p class="exercise-text">🦘 Saltar con una pierna o ambas. La coordinación motora gruesa es fundamental para el aprendizaje futuro y la autoestima.</p>
+      </div>
+      <div class="exercise-card">
+        <span class="exercise-area area-social">Social</span>
+        <p class="exercise-text">⚽ Pasar una pelota con las manos o los pies. Estimula la coordinación y el juego en conjunto, base de las habilidades sociales.</p>
+      </div>
+      <div class="exercise-card">
+        <span class="exercise-area area-motor">Motor fino</span>
+        <p class="exercise-text">🎨 Juego con plastilina, masa u elementos maleables para crear formas. Estimula la motricidad fina, la creatividad y la concentración.</p>
+      </div>
+      <div class="exercise-card">
+        <span class="exercise-area area-motor">Motor fino</span>
+        <p class="exercise-text">👕 Incentivar que el niño/a suba el cierre de su campera, prenda botones, abra y cierre botellas. La autonomía en el vestido favorece la autoestima y la independencia.</p>
+      </div>
+      <div class="exercise-card">
+        <span class="exercise-area area-language">Lenguaje</span>
+        <p class="exercise-text">💬 Incentivar charlas con frases simples: "¿Cómo estás?", "¿Qué estás jugando?", nombrar objetos señalados. La conversación diaria es la herramienta más poderosa de estimulación lingüística.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- METODOLOGIA -->
+<section class="method-section" id="metodologia">
+  <div class="container">
+    <div class="section-label">Metodología</div>
+    <h2 class="section-title">¿Cómo se desarrollan los talleres?</h2>
+    <p class="section-sub">Dos intervenciones comunitarias: talleres en sala de espera del CAPS y encuentro con el grupo "Mateando". Cada sesión dura entre 20 y 30 minutos.</p>
+    <div class="steps-row">
+      <div class="step-item reveal">
+        <div class="step-circle c1" data-num="1">💬</div>
+        <div class="step-title">Apertura e indagación</div>
+        <div class="step-text">Preguntas abiertas sobre cómo juegan con sus hijos y qué actividades realizan en casa. Se parte del saber previo de las familias.</div>
+        <span class="step-time">~5 minutos</span>
+      </div>
+      <div class="step-item reveal reveal-delay-1">
+        <div class="step-circle c2" data-num="2">📚</div>
+        <div class="step-title">Desarrollo expositivo</div>
+        <div class="step-text">Explicación breve sobre estimulación temprana con ejemplos de juegos simples sin materiales costosos. Demostración de prácticas para lenguaje y motricidad según edad.</div>
+        <span class="step-time">~10 minutos</span>
+      </div>
+      <div class="step-item reveal reveal-delay-2">
+        <div class="step-circle c3" data-num="3">🙋</div>
+        <div class="step-title">Cierre y dudas</div>
+        <div class="step-text">Espacio participativo para responder preguntas, con supervisión de la médica pediatra para consultas complejas.</div>
+        <span class="step-time">Tiempo restante</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FUNDAMENTACION -->
+<section class="funda-section" id="fundamentacion">
+  <div class="container">
+    <div class="section-label">Base científica</div>
+    <h2 class="section-title">¿Por qué es tan importante?</h2>
+    <div class="accordion reveal">
+      <div class="acc-item open">
+        <button class="acc-header" onclick="toggleAcc(this)">
+          Plasticidad neuronal en la primera infancia
+          <span class="acc-icon">+</span>
+        </button>
+        <div class="acc-body">
+          Los primeros años de vida se caracterizan por una elevada plasticidad neuronal: el cerebro forma más de un millón de conexiones neuronales nuevas cada segundo. Este proceso es altamente sensible al entorno y constituye la base neurobiológica del aprendizaje. La estimulación adecuada durante esta ventana de oportunidad tiene efectos permanentes en la organización de las redes neuronales.
+        </div>
+      </div>
+      <div class="acc-item">
+        <button class="acc-header" onclick="toggleAcc(this)">
+          Los hitos del desarrollo como herramienta clínica
+          <span class="acc-icon">+</span>
+        </button>
+        <div class="acc-body">
+          Los hitos del desarrollo representan logros esperables dentro de determinados rangos etarios y reflejan la integración progresiva de funciones neurológicas, sensoriales y motoras. Los desfasajes no deben interpretarse únicamente como variaciones individuales: pueden constituir señales de alerta que indiquen la necesidad de evaluación e intervención oportuna.
+        </div>
+      </div>
+      <div class="acc-item">
+        <button class="acc-header" onclick="toggleAcc(this)">
+          El rol central de la familia
+          <span class="acc-icon">+</span>
+        </button>
+        <div class="acc-body">
+          La estimulación temprana no se limita a técnicas específicas: comprende prácticas cotidianas como el juego compartido, la comunicación verbal constante, el contacto físico y la respuesta sensible a las necesidades del niño. Al enseñar a una madre o padre una actividad, esa herramienta se queda en casa y se repite cada día, transformando la rutina diaria en un acto educativo y de salud.
+        </div>
+      </div>
+      <div class="acc-item">
+        <button class="acc-header" onclick="toggleAcc(this)">
+          Inversión costo-efectiva en salud pública
+          <span class="acc-icon">+</span>
+        </button>
+        <div class="acc-body">
+          Invertir en la primera infancia es la estrategia de salud más costo-efectiva. El presupuesto requerido en estimulación temprana es siempre mucho menor que el necesario en educación especial, salud mental y asistencia social en el futuro. La prevención primaria en esta etapa reduce las brechas del desarrollo antes de que se consoliden.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EQUIPO -->
+<section id="equipo">
+  <div class="container">
+    <div class="section-label">Equipo</div>
+    <h2 class="section-title">Quiénes llevamos el proyecto</h2>
+    <div class="team-grid">
+      <div class="team-card reveal">
+        <div class="team-avatar av1">👩‍⚕️</div>
+        <div class="team-name">Alicia Pelayes</div>
+        <div class="team-role">Estudiante de Medicina</div>
+        <span class="team-tag">Planificación y ejecución</span>
+      </div>
+      <div class="team-card reveal reveal-delay-1">
+        <div class="team-avatar av2">👩‍⚕️</div>
+        <div class="team-name">Julieta Juri</div>
+        <div class="team-role">Estudiante de Medicina</div>
+        <span class="team-tag">Planificación y ejecución</span>
+      </div>
+      <div class="team-card reveal reveal-delay-2">
+        <div class="team-avatar av3">👩‍💼</div>
+        <div class="team-name">Dra. Andrea Torres</div>
+        <div class="team-role">Médica Pediatra</div>
+        <span class="team-tag">Supervisión técnica</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- IMPACTO -->
+<section class="impact-section">
+  <div class="container">
+    <div class="section-label">Impacto esperado</div>
+    <h2 class="section-title">Pequeños cambios, grandes resultados</h2>
+    <div class="impact-grid">
+      <div class="impact-item reveal">
+        <div class="impact-num">0–4</div>
+        <div class="impact-label">Años de intervención, el período crítico de mayor plasticidad</div>
+      </div>
+      <div class="impact-item reveal reveal-delay-1">
+        <div class="impact-num">2</div>
+        <div class="impact-label">Espacios comunitarios: sala de espera y grupo "Mateando"</div>
+      </div>
+      <div class="impact-item reveal reveal-delay-2">
+        <div class="impact-num">5</div>
+        <div class="impact-label">Objetivos específicos de educación, sensibilización y capacitación</div>
+      </div>
+      <div class="impact-item reveal reveal-delay-3">
+        <div class="impact-num">∞</div>
+        <div class="impact-label">Herramientas que las familias replican en el hogar cada día</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Estimulación Temprana Psicomotriz</div>
+  <div class="footer-divider"></div>
+  <div class="footer-info">
+    Centro de Atención Primaria de la Salud N°204<br>
+    Salvador Arias 2099 · B° Presidente Sarmiento · Godoy Cruz, Mendoza<br>
+    Atención: Lunes a Viernes 8:00–17:00 hs · Sábados 8:00–12:00 hs<br><br>
+    Proyecto desarrollado por Alicia Pelayes y Julieta Juri<br>
+    Supervisado por Dra. Andrea Torres · Médica Pediatra
+  </div>
+</footer>
+
+<script>
+  // AGE TABS
+  function showAge(id) {
+    document.querySelectorAll('.age-content').forEach(c => c.classList.remove('active'));
+    document.querySelectorAll('.age-tab').forEach(t => t.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    event.target.classList.add('active');
+  }
+
+  // ACCORDION
+  function toggleAcc(btn) {
+    const item = btn.parentElement;
+    const wasOpen = item.classList.contains('open');
+    document.querySelectorAll('.acc-item').forEach(i => i.classList.remove('open'));
+    if (!wasOpen) item.classList.add('open');
+  }
+
+  // SCROLL REVEAL
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
